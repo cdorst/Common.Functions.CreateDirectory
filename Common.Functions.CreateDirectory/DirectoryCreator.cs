@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Common.Functions.ResolveRelativePath;
+using System.IO;
 
 namespace Common.Functions.CreateDirectory
 {
@@ -7,9 +8,6 @@ namespace Common.Functions.CreateDirectory
         public static void Create(string path) => Directory.CreateDirectory(path);
 
         public static void CreateSubdirectories(string pathRelativeToCurrent)
-            => Create(GetFullPath(pathRelativeToCurrent));
-
-        private static string GetFullPath(string pathRelativeToCurrent)
-            => Path.Combine(Directory.GetCurrentDirectory(), pathRelativeToCurrent);
+            => Create(RelativePathResolver.GetPath(pathRelativeToCurrent));
     }
 }
